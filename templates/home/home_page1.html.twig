@@ -1,0 +1,81 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block body %}
+    <div class="nav-bar">
+    <div class="logo-group">
+        <a href="home_page1.html.twig">
+            <img src="../../images/Logo.png" class="logo">
+        </a>
+
+        <div class="nav-links-left">
+            <div class="dropdown">
+                <button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Domaine</a>
+                    <a href="#">Date</a>
+                    <a href="#">Lieu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-links">
+        <div class="recherche">
+    <form action="#" method="get" style="display: flex; align-items: center;">
+        <input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
+    </form>
+    </div>
+            <select class="select" name="currency">
+                <option value="eur">Fr (€)</option>
+                <option value="usd">En ($)</option>
+                <option value="gbp">Uk (£)</option>
+                <option value="jpy">Jp (¥)</option>
+                <option value="cny">Cn (元)</option>
+            </select>
+            <a href="#" title="Utilisateur"><i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i></a>
+            <a href="#" class="">Se connecter</a>
+            <a href="#" title="Panier">🛒</a>
+        </div>
+    </div>
+
+     <section class="sous-titre">
+        <div class="st-image">
+            <img src="#" alt="Stage illustration">
+        </div>
+        <div class="st-text">
+            <h1>LevelUp</h1>
+            <p>Trouve le stage de tes rêves en un swipe !</p>
+            <a href="../swip.html.twig" class="btn">Commencer à swiper</a>
+        </div>
+    </section>
+
+    <section class="feat">
+        <div class="feat">
+            <h2>60+</h2>
+            <p>Partenaires</p>
+        </div>
+        <div class="feat">
+            <h2>89%</h2>
+            <p>Taux de réussite</p>
+        </div>
+        <div class="feat">
+            <h2>200+</h2>
+            <p>Stages disponibles</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div>
+            <h3>Contact</h3>
+            <p><u>Email:</u> contact@levelup.com</p>
+            <p>Téléphone: +33 6 70 13 76 12</p>
+            <p>Adresse: 6 Rue des Stages, Paris</p>
+        </div>
+        <div>
+            <h3>Réseaux sociaux</h3>
+            <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </footer>
+{% endblock %}
