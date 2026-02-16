@@ -346,15 +346,15 @@ body {
     border-radius: 4px;
 }
 
-
-
-
 #dislike{
-    margin-left: 40px;
+    margin-left: 7px;
     font-size: 60px;
+    margin-top: 65%;
 }
 #like{
+    margin-left: 5px;
     font-size: 60px;
+    margin-top: 65%;
 }
 .card {
     border: 2px solid rgb(95 97 110);
@@ -364,9 +364,10 @@ body {
 }
 .container-card{
     margin-top: 40px;
-    border-radius: 0.5em;
+    border-radius: 5em;
     font: 1em sans-serif;
     height: 450px;
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
