@@ -121,17 +121,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 40px;
+    padding: 100px 5%;
     gap: 40px;
+    min-height: 50vh;
 }
 
 .st-image {
     flex :1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.st-image img {
+    margin : 20px;
+    height : auto;
+    max-width: 450px;
 }
 
 .st-text {
     flex: 1;
     color: #0c1c2c;
+    text-align : left;
 }
 
 .st-text h1 {
@@ -157,6 +167,43 @@ body {
 
 .btn:hover {
     background-color: #e2c96f;
+}
+
+
+.description {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    padding: 80px 40px;
+    background-color: #f8f5ef; 
+    gap: 60px; 
+}
+
+.description-img {
+    flex: 1;
+    text-align: center;
+}
+
+.description-img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.description-txt {
+    flex: 1;
+    color: #0c1c2c;
+}
+
+.description-txt h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #0c1c2c;
+}
+
+.description-txt p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 
@@ -297,4 +344,29 @@ body {
     color: #c6a75e;
     padding: 1px 8px;
     border-radius: 4px;
+}
+
+
+
+
+#dislike{
+    margin-left: 40px;
+    font-size: 60px;
+}
+#like{
+    font-size: 60px;
+}
+.card {
+    border: 2px solid rgb(95 97 110);
+    border-radius: 0.5em;
+    padding: 20px;
+    width: 10em;
+}
+.container-card{
+    margin-top: 40px;
+    border-radius: 0.5em;
+    font: 1em sans-serif;
+    height: 450px;
+    display: flex;
+    justify-content: center;
 }
