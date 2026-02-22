@@ -1,113 +1,139 @@
 {% extends 'home/base1.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 {% block body %}
-    <marquee class="pub-premium" scrollamount="8">
-        Passez en mode <span>PREMIUM</span> pour débloquer tous les avatanges exclusifs ! <i class="fa-solid fa-crown" style="color: rgba(12, 28, 44, 1.00);"></i>
-        Profitez de 4 semaines offertes ! 
-    </marquee>
-    <div class="nav-bar">
-    <div class="logo-group">
-        <a href="{{ path('app_home_page') }}">
-            <img src="../../images/Logo.png" class="logo">
-        </a>
+	<marquee class="pub-premium" scrollamount="8">
+		Passez en mode
+		<span>PREMIUM</span>
+		pour débloquer tous les avatanges exclusifs !
+		<i class="fa-solid fa-crown" style="color: rgba(12, 28, 44, 1.00);"></i>
+		Profitez de 4 semaines offertes !
+	</marquee>
+	<div class="nav-bar">
+		<div class="logo-group">
+			<a href="{{ path('app_home_page') }}">
+				<img src="../../images/Logo.png" class="logo">
+			</a>
 
-        <div class="nav-links-left">
-            <div class="dropdown">
-                <button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i></button>
-                <div class="dropdown-content">
-                    <a href="#">Domaine</a>
-                    <a href="#">Date</a>
-                    <a href="#">Lieu</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="nav-links">
-        <div class="recherche">
-    <form action="#" method="get" style="display: flex; align-items: center;">
-        <input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
-    </form>
-    </div>
-            <select class="select" name="currency">
-                <option value="eur">Fr (€)</option>
-                <option value="usd">En ($)</option>
-                <option value="gbp">Uk (£)</option>
-                <option value="jpy">Jp (¥)</option>
-                <option value="cny">Cn (元)</option>
-            </select>
-            <a href="#" title="Utilisateur"><i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i></a>
-            <a href="#" >Se connecter</a>
-            <a href="#" title="Panier">🛒</a>
-        </div>
-    </div>
+			<div class="nav-links-left">
+				<div class="dropdown">
+					<button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i>
+					</button>
+					<div class="dropdown-content">
+						<a href="#">Domaine</a>
+						<a href="#">Date</a>
+						<a href="#">Lieu</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="nav-links">
+			<div class="recherche">
+				<form action="#" method="get" style="display: flex; align-items: center;">
+					<input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
+				</form>
+			</div>
+			<select class="select" name="currency">
+				<option value="eur">Fr (€)</option>
+				<option value="usd">En ($)</option>
+				<option value="gbp">Uk (£)</option>
+				<option value="jpy">Jp (¥)</option>
+				<option value="cny">Cn (元)</option>
+			</select>
+			<a href="#" title="Utilisateur">
+				<i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i>
+			</a>
+			<a href="{{ path('app_home_connexion') }}">Se connecter</a>
+			<a href="#" title="Panier">🛒</a>
+		</div>
+	</div>
 
-     <section class="sous-titre">
-        <div class="st-image">
-            <img src="../../images/Sous-titre.png" alt="Stage illustration">
-        </div>
-        <div class="st-text">
-            <h1>LevelUp</h1>
-            <p>Trouve le stage de tes rêves en un swipe !</p>
-            <a href="{{ path('app_home_swip') }}" class="btn">Commencer à swiper</a>
-        </div>
-    </section>
+	<section class="sous-titre">
+		<div class="st-image">
+			<img src="../../images/Sous-titre.png" alt="Stage illustration">
+		</div>
+		<div class="st-text">
+			<h1>LevelUp</h1>
+			<p>Trouve le stage de tes rêves en un swipe !</p>
+			<a href="{{ path('app_home_swip') }}" class="btn">Commencer à swiper</a>
+		</div>
+	</section>
 
-     <section class="description">
-        <div class="description-img">
-            <img src="#" alt="image">
-        </div>
-        <div class="description-txt">
-            <p>Pourquoi chercher quand on peut simplement trouver ? <strong>LevelUp</strong> centralise les meilleures offres de stage dans tous les domaines d'activité.</p>
-            <p>Que vous soyez collégien en quête d'observation, étudiant en Master ou en pleine reconversion, parcourez des centaines d'opportunités d'un simple geste. <strong>Swiper, matcher, évoluer</strong> : votre futur professionnel n'est qu'à un clic.</p>
-        </div>
-    </section>
+	<section class="description">
+		<div class="description-img">
+			<img src="#" alt="image">
+		</div>
+		<div class="description-txt">
+			<p>Pourquoi chercher quand on peut simplement trouver ?
+				<strong>LevelUp</strong>
+				centralise les meilleures offres de stage dans tous les domaines d'activité.</p>
+			<p>Que vous soyez collégien en quête d'observation, étudiant en Master ou en pleine reconversion, parcourez des centaines d'opportunités d'un simple geste.
+				<strong>Swiper, matcher, évoluer</strong>
+				: votre futur professionnel n'est qu'à un clic.</p>
+		</div>
+	</section>
 
-    <section class="feat">
-        <div class="feat">
-            <h2>60+</h2>
-            <p>Partenaires</p>
-        </div>
-        <div class="feat">
-            <h2>89%</h2>
-            <p>Taux de réussite</p>
-        </div>
-        <div class="feat">
-            <h2>200+</h2>
-            <p>Stages disponibles</p>
-        </div>
-    </section>
+	<section class="feat">
+		<div class="feat">
+			<h2>60+</h2>
+			<p>Partenaires</p>
+		</div>
+		<div class="feat">
+			<h2>89%</h2>
+			<p>Taux de réussite</p>
+		</div>
+		<div class="feat">
+			<h2>200+</h2>
+			<p>Stages disponibles</p>
+		</div>
+	</section>
 
-    <section class="jeu">
-    <div class="jeu-text">
-        <h2>Gardez l’esprit vif avec nos jeux  <i class="fa-solid fa-brain" style="color: rgba(198, 167, 94, 1.00);"></i></h2>
-        <p>Faites une pause et reprenez contact avec votre réseau grâce à des jeux quotidiens rapides.</p>
-    </div>
-    <div class="jeu-list">
-        <div class="jeu-icone">Mini Sudoku
-            <img src="#" alt"Sudoku">
-        </div>
-        <div class="jeu-icone">Flappy Stage
-            <img src="#" alt"Flappy Stage">
-        </div>
-        <div class="jeu-icone">Stager
-            <img src="../../images/Stager.png" alt"Stager">
-        </div>
-    </div>
-    </section>
+	<section class="jeu">
+		<div class="jeu-text">
+			<h2>Gardez l’esprit vif avec nos jeux
+				<i class="fa-solid fa-brain" style="color: rgba(198, 167, 94, 1.00);"></i>
+			</h2>
+			<p>Faites une pause et reprenez contact avec votre réseau grâce à des jeux quotidiens rapides.</p>
+		</div>
+		<div class="jeu-list">
+			<div class="jeu-icone">Mini Sudoku
+				<img src="#" alt"sudoku">
+			</div>
+			<div class="jeu-icone">Flappy Stage
+				<img src="#" alt"flappy stage">
+			</div>
+			<div class="jeu-icone">Stager
+				<img src="../../images/Stager.png" alt"stager">
+			</div>
+		</div>
+	</section>
 
-    <footer class="footer">
-        <div>
-            <h3>Contact</h3>
-            <p><i class="fa-regular fa-envelope" style="color: rgba(198, 167, 94, 1.00);"></i>  <u>Email:</u> contact@levelup.com</p>
-            <p><i class="fa-solid fa-phone" style="color: rgba(198, 167, 94, 1.00);"></i>  Téléphone: +33 6 70 13 76 12</p>
-            <p><i class="fa-solid fa-location-dot" style="color: rgba(198, 167, 94, 1.00);"></i>  Adresse: 6 Rue des Stages, Paris</p>
-        </div>
-        <div>
-            <h3>Réseaux sociaux</h3>
-            <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
-            <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        </div>
-    </footer>
+	<footer class="footer">
+		<div>
+			<h3>Contact</h3>
+			<p>
+				<i class="fa-regular fa-envelope" style="color: rgba(198, 167, 94, 1.00);"></i>
+				<u>Email:</u>
+				contact@levelup.com</p>
+			<p>
+				<i class="fa-solid fa-phone" style="color: rgba(198, 167, 94, 1.00);"></i>
+				Téléphone: +33 6 70 13 76 12</p>
+			<p>
+				<i class="fa-solid fa-location-dot" style="color: rgba(198, 167, 94, 1.00);"></i>
+				Adresse: 6 Rue des Stages, Paris</p>
+		</div>
+		<div>
+			<h3>Réseaux sociaux</h3>
+			<a href="#">
+				<i class="fa-brands fa-facebook"></i>
+				Facebook</a>
+			<a href="#">
+				<i class="fa-brands fa-instagram"></i>
+				Instagram</a>
+			<a href="#">
+				<i class="fa-brands fa-linkedin"></i>
+				LinkedIn</a>
+		</div>
+	</footer>
 {% endblock %}
