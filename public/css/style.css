@@ -10,7 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #0c1c2c; 
+    background-color: #0c1c2c;
     padding: 18px 40px;
     border-bottom: 2px solid #c6a75e;
     position: sticky;
@@ -50,15 +50,15 @@ body {
 }
 
 .dropdown-content {
-    display: none; 
+    display: none;
     position: absolute;
-    top: 100%; 
+    top: 100%;
     left: 0;
     background-color: white;
     min-width: 180px;
     border: 1px solid #c6a75e;
     border-radius: 10px;
-    box-shadow: 0px 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     padding: 0;
 }
@@ -78,6 +78,7 @@ body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
 .nav-links {
     display: flex;
     gap: 25px;
@@ -127,21 +128,21 @@ body {
 }
 
 .st-image {
-    flex :1;
+    flex: 1;
     display: flex;
     justify-content: flex-start;
 }
 
 .st-image img {
-    margin : 20px;
-    height : auto;
+    margin: 20px;
+    height: auto;
     max-width: 450px;
 }
 
 .st-text {
     flex: 1;
     color: #0c1c2c;
-    text-align : left;
+    text-align: left;
 }
 
 .st-text h1 {
@@ -172,11 +173,11 @@ body {
 
 .description {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-between;
     padding: 80px 40px;
-    background-color: #f8f5ef; 
-    gap: 60px; 
+    background-color: #f8f5ef;
+    gap: 60px;
 }
 
 .description-img {
@@ -217,7 +218,7 @@ body {
     text-align: center;
 }
 
-.feat > div {
+.feat>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -253,7 +254,8 @@ body {
     margin-bottom: 15px;
 }
 
-.footer p, .footer a {
+.footer p,
+.footer a {
     color: #c6a75e;
     text-decoration: none;
     font-size: 1rem;
@@ -331,8 +333,8 @@ body {
 
 
 .pub-premium {
-    background: #c6a75e; 
-    color: #0c1c2c;      
+    background: #c6a75e;
+    color: #0c1c2c;
     padding: 2px 0;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -346,23 +348,26 @@ body {
     border-radius: 4px;
 }
 
-#dislike{
+#dislike {
     margin-left: 7px;
     font-size: 60px;
     margin-top: 15%;
 }
-#like{
+
+#like {
     margin-left: 5px;
     font-size: 60px;
     margin-top: 15%;
 }
+
 .card {
     border: 2px solid rgb(95 97 110);
     border-radius: 0.5em;
     padding: 20px;
     width: 10em;
 }
-.container-card{
+
+.container-card {
     margin-top: 40px;
     border-radius: 5em;
     font: 1em sans-serif;
@@ -370,4 +375,34 @@ body {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+.container-connexion {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 500px;
+}
+
+.elements {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+#text-connexion {
+    text-align: center;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: #0c1c2c;
+    color: #c6a75e;
+    padding: 14px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
