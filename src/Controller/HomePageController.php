@@ -1,3 +1,4 @@
+test
 <?php
 
 namespace App\Controller;
@@ -20,6 +21,12 @@ final class HomePageController extends AbstractController
     public function homeSwip(): Response
     {
         return $this->render('home/swip.html.twig');
+    }
+
+     #[Route('/home/connexion', name: 'app_home_connexion')]
+    public function homeConnection(): Response
+    {
+        return $this->render('home/connexion.html.twig');
     }
 
 }
