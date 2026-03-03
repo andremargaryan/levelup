@@ -22,7 +22,7 @@ final class HomePageController extends AbstractController
         return $this->render('home/swip.html.twig');
     }
 
-     #[Route('/home/connexion', name: 'app_home_connexion')]
+     #[Route('/home/connexion', name: 'app_home_connection')]
     public function homeConnection(): Response
     {
         return $this->render('home/connexion.html.twig');
