@@ -2,68 +2,14 @@
 
 {% block title %}Accueil{% endblock %}
 {% block body %}
-    <marquee class="pub-premium" scrollamount="8">
-        Passez en mode <span>PREMIUM</span> pour débloquer tous les avatanges exclusifs ! <i class="fa-solid fa-crown" style="color: rgba(12, 28, 44, 1.00);"></i>
-        Profitez de 4 semaines offertes ! 
-    </marquee>
-    <div class="nav-bar">
-    <div class="logo-group">
-        <a href="{{ path('app_home_page') }}">
-            <img src="../../images/Logo.png" class="logo">
-        </a>
-
-        <div class="nav-links-left">
-            <div class="dropdown">
-                <button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i></button>
-                <div class="dropdown-content">
-                    <a href="#">Domaine</a>
-                    <a href="#">Date</a>
-                    <a href="#">Lieu</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="nav-links">
-        <div class="recherche">
-    <form action="#" method="get" style="display: flex; align-items: center;">
-        <input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
-    </form>
-    </div>
-            <select class="select" name="currency">
-                <option value="eur">Fr (€)</option>
-                <option value="usd">En ($)</option>
-                <option value="gbp">Uk (£)</option>
-                <option value="jpy">Jp (¥)</option>
-                <option value="cny">Cn (元)</option>
-            </select>
-            <a href="#" title="Utilisateur"><i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i></a>
-            <a href="#" >Se connecter</a>
-            <a href="#" title="Panier">🛒</a>
-        </div>
-    </div>
     <div class="container-card">
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <img src="..." class="card-img-top" alt="...">
-            <h5 class="card-title">Stage Développeur Web</h5>
-            <p class="card-text">Start-up Innovante — Paris</p>
+            <h1 class="card-title">Stage Développeur Web</h1>
+            <p class="card-text">Nous recherchons un(e) stagiaire en développement web motivé(e) et passionné(e) par le digital pour rejoindre notre équipe. Vous participerez à la conception, au développement et à l’optimisation de sites et applications web, en collaboration avec nos développeurs et designers.</p>
             <button type="button" class="btn btn-danger btn-lg" id="dislike"><i class="fa-solid fa-x" style="color: rgba(12, 28, 44, 1.00);"></i></button>
             <button type="button" class="btn btn-success btn-lg" id="like"><i class="fa-solid fa-heart" style="color: rgba(12, 28, 44, 1.00);"></i></button>
         </div>
     </div>
     </div>
-    <footer class="footer">
-        <div>
-            <h3>Contact</h3>
-            <p><i class="fa-regular fa-envelope" style="color: rgba(198, 167, 94, 1.00);"></i>  <u>Email:</u> contact@levelup.com</p>
-            <p><i class="fa-solid fa-phone" style="color: rgba(198, 167, 94, 1.00);"></i>  Téléphone: +33 6 70 13 76 12</p>
-            <p><i class="fa-solid fa-location-dot" style="color: rgba(198, 167, 94, 1.00);"></i>  Adresse: 6 Rue des Stages, Paris</p>
-        </div>
-        <div>
-            <h3>Réseaux sociaux</h3>
-            <a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a>
-            <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
-            <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        </div>
-    </footer>
 {% endblock %}
