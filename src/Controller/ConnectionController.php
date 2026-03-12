@@ -14,15 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConnectionController extends AbstractController
 {
-    public function __construct(private UtilisateurRepository $utilisateurRepository)
-    {
-    }
-
+    //public function __construct(private UtilisateurRepository $utilisateurRepository)
+    //{
+    // }
     #[Route('/comptes/pageConnection', name: 'app_comptes_page')]
     public function pageConnection(): Response
     {
         return $this->render('comptes/page.html.twig');
     }
+
+   
 
     #[Route('/comptes/pageConnection', name: 'app_comptes_connection')]
     public function connection(): Response
