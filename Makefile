@@ -56,3 +56,7 @@ migrate:
 # Run PHPUnit tests
 test:
 	docker exec $(DOCKER_PHP_CONTAINER) ./vendor/bin/phpunit
+
+# liste des routes
+router:
+	docker exec $(DOCKER_PHP_CONTAINER) php bin/console debug:router

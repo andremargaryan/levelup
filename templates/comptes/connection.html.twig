@@ -1,0 +1,33 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}Connectez-vous
+{% endblock %}
+
+{% block body %}
+	<div class="container-connexion">
+		<h1 class="mb-4">Connectez-vous</h1>
+		{{ form_start(form) }}
+		<div class="elements">
+			{{ form_row(form.name) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.prenom) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.mdp) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.mail) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.dateNaissance) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.profession) }}
+		</div>
+		<div class="elements">
+			{{ form_row(form.save) }}
+		</div>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}
