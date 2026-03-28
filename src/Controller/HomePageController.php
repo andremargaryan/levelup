@@ -26,7 +26,7 @@ final class HomePageController extends AbstractController
         return $this->render('home/swip.html.twig');
     }
 
-    #[Route('/comptes/connection', name: 'app_comptes_connection')]
+    #[Route('/comptes/inscription', name: 'app_comptes_inscription')]
     public function register(Request $request, UserRepository $userRepository): Response
     {
 
@@ -45,7 +45,7 @@ final class HomePageController extends AbstractController
             return $this->redirectToRoute('app_home_page');
         }
 
-        return $this->render('comptes/connection.html.twig', [
+        return $this->render('comptes/inscription.html.twig', [
             'form' => $form->createView(),
         ]);
     }

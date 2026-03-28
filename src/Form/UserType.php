@@ -36,7 +36,7 @@ class UserType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
              ->add('save', SubmitType::class, [
-                'label' => $options['is_edit'] ? 'Se connecter' : "S'inscrire",
+                'label' => $options['is_edit'] ? "S'incrire" : "S'inscrire",
                 'attr' => ['class' => 'btn']
             ]);
     }
