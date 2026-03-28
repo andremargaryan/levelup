@@ -4,46 +4,39 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Entity\Utilisateur;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class UtilisateurType extends AbstractType
+
+
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('nom', TextType::class, [
                 'label' => 'Nom',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('prenom', IntegerType::class, [
+            ->add('prenom', TextType::class, [
                 'label' => 'Prenom',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('mdp', TextType::class, [
+            ->add('mot_de_passe', TextType::class, [
                 'label' => 'Mot de passe',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('mail', TextareaType::class, [
+            ->add('mail', EmailType::class, [
                 'label' => 'Mail',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('dateDeNaissance', TextareaType::class, [
-                'label' => 'Date naissance',
-                'attr' => ['class' => 'form-control']
-            ])
-              ->add('profession', TextareaType::class, [
-                'label' => 'Profession',
-                'attr' => ['class' => 'form-control']
-            ])
              ->add('save', SubmitType::class, [
-                'label' => $options['exist'] ?? false ? 'se connecter' : 's/inscrire',
+                'label' => $options['is_edit'] ? 'Se connecter' : "S'inscrire",
                 'attr' => ['class' => 'btn']
             ]);
     }
@@ -51,7 +44,7 @@ class UtilisateurType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Utilisateur::class,
+            'data_class' => User::class,
             'is_edit' => True,
         ]);
     }

@@ -1,9 +1,12 @@
-test
 <?php
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -23,10 +26,28 @@ final class HomePageController extends AbstractController
         return $this->render('home/swip.html.twig');
     }
 
-     #[Route('/home/connexion', name: 'app_home_connexion')]
-    public function homeConnection(): Response
+    #[Route('/comptes/connection', name: 'app_comptes_connection')]
+    public function register(Request $request, UserRepository $userRepository): Response
     {
-        return $this->render('home/connexion.html.twig');
+
+        $user = new User();
+
+
+        $form = $this->createForm(UserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+           
+            $userRepository->save($user);
+
+            return $this->redirectToRoute('app_home_page');
+        }
+
+        return $this->render('comptes/connection.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }
