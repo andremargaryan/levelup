@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Repository\OffreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +22,13 @@ final class HomePageController extends AbstractController
     }
 
     #[Route('/home/swip', name: 'app_home_swip')]
-    public function homeSwip(): Response
+    public function homeSwip(OffreRepository $offreRepository): Response
     {
-        return $this->render('home/swip.html.twig');
+        $offre = $offreRepository->findOneBy([], ['id' => 'ASC']);
+
+        return $this->render('home/swip.html.twig', [
+            'offre' => $offre,
+        ]);
     }
 
     #[Route('/comptes/inscription', name: 'app_comptes_inscription')]
