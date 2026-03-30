@@ -1,0 +1,451 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}Morpion
+{% endblock %}
+
+{% block body %}
+	<div class="morpion-wrapper">
+
+		<h1 class="morpion-title">Morpion</h1>
+		<p class="morpion-subtitle">Jouez contre l'IA</p>
+
+		<div class="difficulty-selector">
+			<button class="diff-btn active" data-level="easy" onclick="setDifficulty('easy', this)">Facile</button>
+			<button class="diff-btn" data-level="medium" onclick="setDifficulty('medium', this)">Moyen</button>
+			<button class="diff-btn" data-level="hard" onclick="setDifficulty('hard', this)">Difficile</button>
+		</div>
+
+		<div class="morpion-status" id="status">À vous de jouer !</div>
+
+		<div class="morpion-board" id="board">
+			<div class="cell" data-index="0"></div>
+			<div class="cell" data-index="1"></div>
+			<div class="cell" data-index="2"></div>
+			<div class="cell" data-index="3"></div>
+			<div class="cell" data-index="4"></div>
+			<div class="cell" data-index="5"></div>
+			<div class="cell" data-index="6"></div>
+			<div class="cell" data-index="7"></div>
+			<div class="cell" data-index="8"></div>
+		</div>
+
+		<div class="morpion-scores">
+			<div class="score-card">
+				<span class="score-label">Vous (X)</span>
+				<span class="score-num" id="score-player">0</span>
+			</div>
+			<div class="score-card">
+				<span class="score-label">Égalités</span>
+				<span class="score-num" id="score-draw">0</span>
+			</div>
+			<div class="score-card">
+				<span class="score-label">IA (O)</span>
+				<span class="score-num" id="score-ia">0</span>
+			</div>
+		</div>
+
+		<button class="morpion-btn" onclick="restartGame()">Rejouer</button>
+
+	</div>
+
+	<style>
+		.morpion-wrapper {
+			max-width: 420px;
+			margin: 3rem auto;
+			text-align: center;
+			font-family: sans-serif;
+		}
+		.morpion-title {
+			font-size: 2rem;
+			font-weight: 700;
+			margin-bottom: 0.25rem;
+			color: #1a1a1a;
+		}
+		.morpion-subtitle {
+			font-size: 0.95rem;
+			color: #888;
+			margin-bottom: 1.25rem;
+		}
+
+		.difficulty-selector {
+			display: flex;
+			justify-content: center;
+			gap: 8px;
+			margin-bottom: 1.25rem;
+		}
+		.diff-btn {
+			padding: 6px 18px;
+			border-radius: 99px;
+			border: 1.5px solid #ddd;
+			background: transparent;
+			font-size: 0.85rem;
+			font-weight: 600;
+			cursor: pointer;
+			color: #888;
+			transition: all 0.15s;
+		}
+		.diff-btn:hover {
+			border-color: #aaa;
+			color: #444;
+		}
+		.diff-btn.active {
+			background: #1a1a1a;
+			color: #fff;
+			border-color: #1a1a1a;
+		}
+
+		.morpion-status {
+			font-size: 1rem;
+			font-weight: 600;
+			margin-bottom: 1.25rem;
+			min-height: 1.5rem;
+			color: #444;
+			transition: color 0.2s;
+		}
+		.morpion-status.win {
+			color: #1D9E75;
+		}
+		.morpion-status.lose {
+			color: #E24B4A;
+		}
+		.morpion-status.draw {
+			color: #BA7517;
+		}
+
+		.morpion-board {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 10px;
+			margin: 0 auto 1.5rem;
+			width: 300px;
+		}
+		.cell {
+			width: 88px;
+			height: 88px;
+			background: #f5f5f3;
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2.2rem;
+			font-weight: 700;
+			cursor: pointer;
+			transition: background 0.15s, transform 0.1s;
+			user-select: none;
+			border: 2px solid transparent;
+		}
+		.cell:hover:not(.taken) {
+			background: #ebebea;
+			transform: scale(1.04);
+		}
+		.cell.taken {
+			cursor: default;
+		}
+		.cell.x {
+			color: #534AB7;
+		}
+		.cell.o {
+			color: #E24B4A;
+		}
+		.cell.winning {
+			background: #EEEDFE;
+			border-color: #7F77DD;
+		}
+
+		.morpion-scores {
+			display: flex;
+			justify-content: center;
+			gap: 16px;
+			margin-bottom: 1.5rem;
+		}
+		.score-card {
+			background: #f5f5f3;
+			border-radius: 10px;
+			padding: 0.6rem 1.2rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			min-width: 80px;
+		}
+		.score-label {
+			font-size: 0.75rem;
+			color: #888;
+			margin-bottom: 2px;
+		}
+		.score-num {
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: #1a1a1a;
+		}
+
+		.morpion-btn {
+			background: #1a1a1a;
+			color: #fff;
+			border: none;
+			border-radius: 10px;
+			padding: 0.65rem 2rem;
+			font-size: 0.95rem;
+			font-weight: 600;
+			cursor: pointer;
+			transition: background 0.15s, transform 0.1s;
+		}
+		.morpion-btn:hover {
+			background: #333;
+		}
+		.morpion-btn:active {
+			transform: scale(0.97);
+		}
+	</style>
+
+	<script>
+		const WINNING_COMBOS = [
+[
+0, 1, 2
+],
+[
+3, 4, 5
+],
+[
+6, 7, 8
+],
+[
+0, 3, 6
+],
+[
+1, 4, 7
+],
+[
+2, 5, 8
+],
+[
+0, 4, 8
+],
+[
+2, 4, 6
+]
+];
+
+let board = Array(9).fill(null);
+let gameOver = false;
+let difficulty = 'easy';
+let scores = {
+player: 0,
+ia: 0,
+draw: 0
+};
+
+// --- Utilitaires ---
+
+function checkWinner(b) {
+for (const [a, c, d] of WINNING_COMBOS) {
+if (b[a] && b[a] === b[c] && b[a] === b[d]) {
+return {
+winner: b[a],
+combo: [a, c, d]
+};
+}
+}
+if (b.every(cell => cell !== null)) 
+return {winner: 'draw', combo: []};
+
+return null;
+}
+
+function emptyCells(b) {
+return b.map((v, i) => v === null ? i : null).filter(v => v !== null);
+}
+
+// --- IA Facile : aléatoire ---
+
+function iaEasy(b) {
+const empty = emptyCells(b);
+return empty[Math.floor(Math.random() * empty.length)];
+}
+
+// --- IA Moyen : bloque le joueur si nécessaire, sinon aléatoire ---
+
+function findWinningMove(b, player) {
+for (const [a, c, d] of WINNING_COMBOS) {
+const line = [
+b[a], b[c], b[d]
+];
+const nullIdx = [a, c, d].filter(i => b[i] === null);
+if (line.filter(v => v === player).length === 2 && nullIdx.length === 1) {
+return nullIdx[0];
+}
+}
+return null;
+}
+
+function iaMedium(b) { // 1. Gagner si possible
+const win = findWinningMove(b, 'O');
+if (win !== null) 
+return win;
+
+
+// 2. Bloquer le joueur
+const block = findWinningMove(b, 'X');
+if (block !== null) 
+return block;
+
+
+// 3. Sinon aléatoire
+return iaEasy(b);
+}
+
+// --- IA Difficile : Minimax ---
+
+function minimax(b, isMaximizing) {
+const result = checkWinner(b);
+if (result) {
+if (result.winner === 'O') 
+return 10;
+
+if (result.winner === 'X') 
+return -10;
+
+return 0;
+}
+
+const empty = emptyCells(b);
+
+if (isMaximizing) {
+let best = -Infinity;
+for (const i of empty) {
+b[i] = 'O';
+best = Math.max(best, minimax(b, false));
+b[i] = null;
+}
+return best;
+} else {
+let best = Infinity;
+for (const i of empty) {
+b[i] = 'X';
+best = Math.min(best, minimax(b, true));
+b[i] = null;
+}
+return best;
+}
+}
+
+function iaHard(b) {
+let bestScore = -Infinity;
+let bestMove = null;
+for (const i of emptyCells(b)) {
+b[i] = 'O';
+const score = minimax(b, false);
+b[i] = null;
+if (score > bestScore) {
+bestScore = score;
+bestMove = i;
+}
+}
+return bestMove;
+}
+
+// --- Logique principale ---
+
+function iaPlay() {
+let move;
+if (difficulty === 'easy') 
+move = iaEasy(board);
+ else if (difficulty === 'medium') 
+move = iaMedium(board);
+ else 
+move = iaHard(board);
+
+
+if (move === null || move === undefined) 
+return;
+
+board[move] = 'O';
+renderBoard();
+}
+
+function renderBoard() {
+document.querySelectorAll('.cell').forEach((cell, i) => {
+cell.textContent = board[i] ?? '';
+cell.className = 'cell';
+if (board[i]) 
+cell.classList.add('taken', board[i].toLowerCase());
+
+});
+}
+
+function setStatus(msg, cls = '') {
+const el = document.getElementById('status');
+el.textContent = msg;
+el.className = 'morpion-status ' + cls;
+}
+
+function highlightWin(combo) {
+combo.forEach(i => document.querySelectorAll('.cell')[i].classList.add('winning'));
+}
+
+function updateScores() {
+document.getElementById('score-player').textContent = scores.player;
+document.getElementById('score-ia').textContent = scores.ia;
+document.getElementById('score-draw').textContent = scores.draw;
+}
+
+function handleClick(index) {
+if (gameOver || board[index] !== null) 
+return;
+
+
+board[index] = 'X';
+renderBoard();
+
+const afterPlayer = checkWinner(board);
+if (afterPlayer) {
+endGame(afterPlayer);
+return;
+}
+
+setStatus("L'IA réfléchit...");
+setTimeout(() => {
+iaPlay();
+const afterIA = checkWinner(board);
+if (afterIA) 
+endGame(afterIA);
+ else 
+setStatus('À vous de jouer !');
+
+}, 400);
+}
+
+function endGame(result) {
+gameOver = true;
+if (result.winner === 'X') {
+setStatus('Vous avez gagné ! 🎉', 'win');
+scores.player ++;
+highlightWin(result.combo);
+} else if (result.winner === 'O') {
+setStatus("L'IA a gagné !", 'lose');
+scores.ia ++;
+highlightWin(result.combo);
+} else {
+setStatus("Égalité !", 'draw');
+scores.draw ++;
+} updateScores();
+}
+
+function restartGame() {
+board = Array(9).fill(null);
+gameOver = false;
+renderBoard();
+setStatus('À vous de jouer !');
+}
+
+function setDifficulty(level, btn) {
+difficulty = level;
+document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+restartGame();
+}
+
+document.querySelectorAll('.cell').forEach(cell => {
+cell.addEventListener('click', () => handleClick(+ cell.dataset.index));
+});
+	</script>
+{% endblock %}
