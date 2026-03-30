@@ -248,6 +248,7 @@ combo: [a, c, d]
 if (b.every(cell => cell !== null)) 
 return {winner: 'draw', combo: []};
 
+
 return null;
 }
 
@@ -283,10 +284,12 @@ if (win !== null)
 return win;
 
 
+
 // 2. Bloquer le joueur
 const block = findWinningMove(b, 'X');
 if (block !== null) 
 return block;
+
 
 
 // 3. Sinon aléatoire
@@ -301,8 +304,10 @@ if (result) {
 if (result.winner === 'O') 
 return 10;
 
+
 if (result.winner === 'X') 
 return -10;
+
 
 return 0;
 }
@@ -355,8 +360,10 @@ move = iaMedium(board);
 move = iaHard(board);
 
 
+
 if (move === null || move === undefined) 
 return;
+
 
 board[move] = 'O';
 renderBoard();
@@ -368,6 +375,7 @@ cell.textContent = board[i] ?? '';
 cell.className = 'cell';
 if (board[i]) 
 cell.classList.add('taken', board[i].toLowerCase());
+
 
 });
 }
@@ -393,6 +401,7 @@ if (gameOver || board[index] !== null)
 return;
 
 
+
 board[index] = 'X';
 renderBoard();
 
@@ -410,6 +419,7 @@ if (afterIA)
 endGame(afterIA);
  else 
 setStatus('À vous de jouer !');
+
 
 }, 400);
 }
