@@ -1,17 +1,28 @@
 {% extends 'home/base1.html.twig' %}
 {% block body %}
-<div class="container-card">
-  <div class="card" style="width: 18rem;" data-id="{{ offre.id }}">
-    <div class="card-body">
-        <span class="badge">{{ offre.tag }}</span>
-        <h1 class="card-title">{{ offre.titre }}</h1>
-        <p class="card-text">{{ offre.description }}</p>
-        <p><strong>{{ offre.entreprise }}</strong></p>
-        <button type="button" class="btn btn-danger btn-lg" id="dislike"><i class="fa-solid fa-x" style="color: rgba(12, 28, 44, 1.00);"></i></button>
-        <button type="button" class="btn btn-success btn-lg" id="like"><i class="fa-solid fa-heart" style="color: rgba(12, 28, 44, 1.00);"></i></button>
+{% if offre %}
+  <div class="container-card">
+    <div class="card" style="width: 18rem;" data-id="{{ offre.id }}">
+      <div class="card-body">
+          <span class="badge">{{ offre.tag }}</span>
+          <h1 class="card-title">{{ offre.titre }}</h1>
+          <p class="card-text">{{ offre.description }}</p>
+          <p><strong>{{ offre.entreprise }}</strong></p>
+          <button type="button" class="btn btn-danger btn-lg" id="dislike"><i class="fa-solid fa-x" style="color: rgba(12, 28, 44, 1.00);"></i></button>
+          <button type="button" class="btn btn-success btn-lg" id="like"><i class="fa-solid fa-heart" style="color: rgba(12, 28, 44, 1.00);"></i></button>
+      </div>
     </div>
   </div>
+{% else %}
+<div class="container-card">
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 15px; color: #0c1c2c;">
+        <span style="font-size: 3rem;">📭</span>
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 1.5rem;">Vous arrivez trop tôt !</h2>
+        <p style="color: #888; font-size: 1rem;">Aucune offre de stage disponible pour le moment.</p>
+        <a href="{{ path('app_home_page') }}" class="btn">Retour à l'accueil</a>
+    </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block javascripts %}
