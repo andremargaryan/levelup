@@ -225,9 +225,9 @@
 </header>
 
 <nav class="emp-tabs">
-    <button class="emp-tab active" onclick="showTab('offres', this)"> Mes offres</button>
-    <button class="emp-tab" onclick="showTab('candidatures', this)"> Candidatures</button>
-    <button class="emp-tab" onclick="showTab('profils', this)">Swiper des profils</button>
+    <button class="emp-tab active" onclick="showTab('offres', this)">📋 Mes offres</button>
+    <button class="emp-tab" onclick="showTab('candidatures', this)">👥 Candidatures</button>
+    <button class="emp-tab" onclick="showTab('profils', this)">🔍 Swiper des profils</button>
 </nav>
 
 <main class="emp-content">
@@ -242,8 +242,8 @@
             <div class="offre-card">
                 <h3>{{ offre.titre }}</h3>
                 <div class="offre-tags">
-                    <span class="tag">{{ offre.localisation }}</span>
-                    <span class="tag">{{ offre.type }}</span>
+                    <span class="tag">📍 {{ offre.localisation }}</span>
+                    <span class="tag">🕐 {{ offre.type }}</span>
                 </div>
                 <div class="offre-footer">
                     <span class="nb-cand">{{ offre.candidatures }} candidature{{ offre.candidatures > 1 ? 's' : '' }}</span>
@@ -293,7 +293,7 @@
                         <span class="tag">{{ comp }}</span>
                     {% endfor %}
                 </div>
-                <div class="profil-dispo"> Disponible : {{ profil.disponible }}</div>
+                <div class="profil-dispo">📅 Disponible : {{ profil.disponible }}</div>
                 <div class="profil-actions">
                     <button class="btn-refuse">✕</button>
                     <button class="btn-accept">✓</button>
