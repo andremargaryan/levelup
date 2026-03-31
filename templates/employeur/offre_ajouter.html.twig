@@ -1,0 +1,108 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}Publier une offre – LevelUp{% endblock %}
+
+{% block body %}
+<style>
+    :root { 
+        --gold: #C9A84C; 
+        --navy: #1B2A3B;
+        --radius: 12px; 
+    }
+    .new-wrapper { 
+        max-width: 700px; 
+        margin: 2.5rem auto; 
+        padding: 0 1.5rem; 
+    }
+    .new-card {
+        background: #fff;
+        border: 1.5px solid #EDE8DE;
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: 0 4px 24px rgba(27,42,59,.10);
+    }
+    .new-card h1 { 
+        color: var(--navy); 
+        font-size: 1.4rem; 
+        margin-bottom: 1.5rem; 
+    }
+    .new-card label { 
+        font-weight: 700; 
+        color: var(--navy); display: block; 
+        margin-bottom: .3rem; 
+    }
+    .new-card input, .new-card textarea {
+        width: 100%;
+        border: 1.5px solid #EDE8DE;
+        border-radius: 8px;
+        padding: .6rem 1rem;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        font-family: inherit;
+    }
+    .new-card input:focus, .new-card textarea:focus {
+        outline: none;
+        border-color: var(--gold);
+    }
+    .new-card textarea { 
+        min-height: 120px; 
+        resize: vertical; 
+    }
+    .actions { 
+        display: flex; 
+        gap: 1rem; 
+        margin-top: .5rem; 
+    }
+    .btn-save {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        border: none;
+        border-radius: 50px;
+        padding: .6rem 1.4rem;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    .btn-save:hover { 
+        opacity: .85; 
+    }
+    .btn-back {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #6B7A8D;
+        text-decoration: none;
+        font-size: .9rem;
+    }
+    .btn-cancel {
+        background: #fff;
+        color: #6B7A8D;
+        font-weight: 700;
+        border: 1.5px solid #EDE8DE;
+        border-radius: 50px;
+        padding: .6rem 1.4rem;
+        font-size: 1rem;
+        cursor: pointer;
+        text-decoration: none;
+    }
+</style>
+
+<div class="new-wrapper">
+    <a href="{{ path('app_employeur_dashboard') }}" class="btn-back">← Retour au dashboard</a>
+
+    <div class="new-card">
+        <h1> Publier une offre</h1>
+
+        {{ form_start(form) }}
+            {{ form_row(form.titre) }}
+            {{ form_row(form.entreprise) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.tag) }}
+
+            <div class="actions">
+                <button type="submit" class="btn-save"> Publier</button>
+                <a href="{{ path('app_employeur_dashboard') }}" class="btn-cancel">Annuler</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

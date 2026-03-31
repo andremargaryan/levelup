@@ -1,0 +1,97 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}{{ offre.titre }} – LevelUp{% endblock %}
+
+{% block body %}
+<style>
+    :root { 
+        --gold: #C9A84C; 
+        --navy: #1B2A3B;
+         --radius: 12px; 
+    }
+    .detail-wrapper { 
+        max-width: 700px; 
+        margin: 2.5rem auto; 
+        padding: 0 1.5rem; 
+    }
+    .detail-card {
+        background: #fff;
+        border: 1.5px solid #EDE8DE;
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: 0 4px 24px rgba(27,42,59,.10);
+    }
+    .detail-card h1 { 
+        color: var(--navy); 
+        font-size: 1.5rem; 
+        margin-bottom: .5rem; 
+    }
+    .detail-card .entreprise { 
+        color: var(--gold); 
+        font-weight: 700; 
+        margin-bottom: 1.5rem; 
+    }
+    .detail-card .tag {
+        display: inline-block;
+        background: #F5F0E8;
+        color: #6B7A8D;
+        border-radius: 50px;
+        padding: .2rem .75rem;
+        font-size: .85rem;
+        margin-bottom: 1.5rem;
+    }
+    .detail-card .description { 
+        color: #444; 
+        line-height: 1.7; 
+        margin-bottom: 2rem; 
+    }
+    .actions { 
+        display: flex; 
+        gap: 1rem; 
+    }
+    .btn-edit {
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        border-radius: 50px;
+        padding: .6rem 1.4rem;
+        text-decoration: none;
+    }
+    .btn-delete {
+        background: #fff;
+        color: #E05252;
+        font-weight: 700;
+        border: 2px solid #E05252;
+        border-radius: 50px;
+        padding: .6rem 1.4rem;
+        text-decoration: none;
+    }
+    .btn-back {
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        color: #6B7A8D;
+        text-decoration: none;
+        font-size: .9rem;
+    }
+    .btn-back:hover { 
+        color: var(--navy); 
+    }
+</style>
+
+<div class="detail-wrapper">
+    <a href="{{ path('app_employeur_dashboard') }}" class="btn-back">← Retour aux offres</a>
+
+    <div class="detail-card">
+        <h1>{{ offre.titre }}</h1>
+        <div class="entreprise">🏢 {{ offre.entreprise }}</div>
+        <div><span class="tag"><i class="fa-solid fa-tag" style="color: rgb(12, 28, 44);"></i> {{ offre.tag }}</span></div>
+        <div class="description">{{ offre.description }}</div>
+
+        <div class="actions">
+            <a href="{{ path('app_employeur_offre_edit', {id: offre.id}) }}" class="btn-edit"><i class="fa-solid fa-pen-to-square" style="color: rgb(12, 28, 44);"></i> Modifier</a>
+            <a href="{{ path('app_employeur_delete', {id: offre.id}) }}" onclick="return confirm('Supprimer cette offre ?')"
+            class="btn-delete"><i class="fa-solid fa-trash" style="color: rgb(12, 28, 44);"></i> Supprimer</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

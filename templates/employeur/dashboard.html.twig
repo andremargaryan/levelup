@@ -239,17 +239,21 @@
         </div>
         <div class="offres-grid">
             {% for offre in offres %}
-            <div class="offre-card">
-                <h3>{{ offre.titre }}</h3>
-                <div class="offre-tags">
-                    <span class="tag">📍 {{ offre.localisation }}</span>
-                    <span class="tag">🕐 {{ offre.type }}</span>
-                </div>
-                <div class="offre-footer">
-                    <span class="nb-cand">{{ offre.candidatures }} candidature{{ offre.candidatures > 1 ? 's' : '' }}</span>
-                    <span class="date">{{ offre.date|date('d/m/Y') }}</span>
-                </div>
-            </div>
+                <a href="{{ path('app_employeur_offre_detail', {id: offre.id}) }}" 
+                style="text-decoration: none; color: inherit;">
+                    <div class="offre-card">
+                        <h3>{{ offre.titre }}</h3>
+                        <div class="offre-tags">
+                            <span class="tag">🏢 {{ offre.entreprise }}</span>
+                            <span class="tag">🏷️ {{ offre.tag }}</span>
+                        </div>
+                        <div class="offre-footer">
+                            <span class="nb-cand">{{ offre.description }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <p>Aucune offre trouvée.</p>
             {% endfor %}
         </div>
     </div>
