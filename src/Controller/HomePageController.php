@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 final class HomePageController extends AbstractController
 {
     #[Route('/home/page', name: 'app_home_page')]
@@ -52,6 +53,37 @@ final class HomePageController extends AbstractController
 
         return $this->render('comptes/inscription.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+        #[Route('/comptes/connexion', name: 'app_comptes_connexion')]
+    public function connexion(Request $request, UserRepository $userRepository): Response
+    {
+        if ($request->isMethod('POST')) {
+            $mail = $request->request->get('mail');
+            $mdp  = $request->request->get('mot_de_passe');
+
+            $utilisateur = $userRepository->findOneBy(['mail' => $mail]);
+
+            if ($utilisateur && $utilisateur->getMotDePasse() === $mdp) {
+                $request->getSession()->set('user', $utilisateur->getPrenom());
+                return $this->redirectToRoute('app_home_page');
+            }
+
+            return $this->render('comptes/connexion.html.twig', [
+                'erreur' => 'Email ou mot de passe incorrect.'
+            ]);
+        }
+
+        return $this->render('comptes/connexion.html.twig');
+    }
+
+    #[Route('/comptes/deconnexion', name: 'app_comptes_deconnexion')]
+    public function deconnexion(Request $request): Response
+    {
+        $request->getSession()->remove('user');
+        return $this->render('home/home_page1.html.twig', [
+            'controller_name' => 'HomePageController',
         ]);
     }
 
