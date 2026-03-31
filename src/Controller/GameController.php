@@ -13,4 +13,10 @@ class GameController extends AbstractController
     {
         return $this->render('jeux/morpion.html.twig');
     }
+
+    #[Route('/jeux/flappystage', name: 'app_flappystage')]
+    public function flappystage(): Response
+    {
+        return $this->render('jeux/flappystage.html.twig');
+    }
 }
