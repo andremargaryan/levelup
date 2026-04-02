@@ -74,7 +74,7 @@
                 bottomPipeImg.src = "/images/bottompipe.png";
 
                 requestAnimationFrame(update);
-                setInterval(placePipes, 3000);
+                let pipeInterval = setInterval(placePipes, 3000);
                 document.addEventListener("keydown", moveBird);
             }
 
@@ -111,6 +111,8 @@
                 while(pipeArray.length > 0 && pipeArray[0].x < -pipeWidth){
                     pipeArray.shift();
                 }
+
+                updateSpeed();
 
                 context.fillStyle = "white";
                 context.font = "45px sans-serif";
@@ -160,6 +162,10 @@
                         bird.y = birdY;
                         pipeArray = [];
                         score = 0;
+                        velocityX = -2;
+                        currentLevel = 0;
+                        clearInterval(pipeInterval);
+                        pipeInterval = setInterval(placesPipes, 3000);
                         gameOver = false;
                     }
                 }
@@ -170,6 +176,20 @@
                 a.x + a.width > b.x &&
                 a.y < b.y + b.height &&
                 a.y + a.height > b.y;
+            }
+
+            let currentLevel = 0;
+
+            function updateSpeed(){
+                let level = Math.floor(score / 10);
+                velocityX = -2 - (level * 0.5);
+
+                if(level !== currentLevel){
+                    currentLevel = level;
+                    clearInterval(pipeInterval);
+                    let newInterval = Math.max(1200, 3000 - (level * 100));
+                    pipeInterval = setInterval(placePipes, newInterval);
+                }
             }
         </script>
     </head>
