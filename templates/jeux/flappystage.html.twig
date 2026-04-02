@@ -28,7 +28,10 @@
             let birdHeight = 24;
             let birdX = boardWidth/8;
             let birdY = boardHeight/2;
-            let birdImg;
+
+            let birdImgs = [];
+            let birdFrame = 0;
+            let frameCounter = 0;
 
             let bird = {
                 x : birdX,
@@ -64,11 +67,13 @@
                 context = board.getContext("2d");
 
 
-                birdImg = new Image();
-                birdImg.src = "/images/flappybird.png";
-                birdImg.onload = function(){
-                    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
-                }
+                let frames = ["/images/flappybird1.png", "/images/flappybird2.png", "/images/flappybird3.png"];
+                frames.forEach((src, i) => {
+                    let img = new Image();
+                    img.src = src;
+                    birdImgs[i] = img;
+                });
+
 
                 topPipeImg = new Image();
                 topPipeImg.src = "/images/toppipe.png";
@@ -90,7 +95,17 @@
 
                 velocityY += gravity;
                 bird.y = Math.max(bird.y + velocityY, 0);
-                context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+                
+                frameCounter++;
+                if(frameCounter % 8 === 0){
+                    birdFrame = (birdFrame + 1) % birdImgs.length;
+                }
+                context.save();
+                context.translate(bird.x + bird.width/2, bird.y + bird.height/2);
+                let rotation = Math.min(Math.max(velocityY * 3, -30), 90);
+                context.rotate(rotation * Math.PI / 180);
+                context.drawImage(birdImgs[birdFrame], -bird.width/2, -bird.height/2, bird.width, bird.height);
+                context.restore();
 
                 if(bird.y > board.height){
                     gameOver = true;
@@ -118,11 +133,13 @@
                 updateSpeed();
 
                 context.fillStyle = "white";
+                context.font = "25px sans-serif";
+                context.fillText("LVL "+ (currentLevel + 1), 40, 30)
                 context.font = "45px sans-serif";
-                context.fillText(score, 5, 45);
-
+                context.textAlign = "center";
                 if(gameOver){
-                    context.fillText("GAME OVER", 5, 90);
+                    context.fillText("GAME OVER", board.width/2, 90);
+                    context.textAlign = "left";
                 }
             }
 
@@ -163,6 +180,8 @@
 
                     if(gameOver){
                         bird.y = birdY;
+                        birdFrame = 0;
+                        frameCounter = 0;
                         pipeArray = [];
                         score = 0;
                         velocityX = -2;
