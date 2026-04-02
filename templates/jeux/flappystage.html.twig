@@ -53,6 +53,9 @@
             let gameOver = false;
             let score = 0;
 
+            let currentLevel = 0;
+            let pipeInterval;
+
 
             window.onload = function(){
                 board = document.getElementById("board");
@@ -74,7 +77,7 @@
                 bottomPipeImg.src = "/images/bottompipe.png";
 
                 requestAnimationFrame(update);
-                let pipeInterval = setInterval(placePipes, 3000);
+                pipeInterval = setInterval(placePipes, 3000);
                 document.addEventListener("keydown", moveBird);
             }
 
@@ -165,7 +168,7 @@
                         velocityX = -2;
                         currentLevel = 0;
                         clearInterval(pipeInterval);
-                        pipeInterval = setInterval(placesPipes, 3000);
+                        pipeInterval = setInterval(placePipes, 3000);
                         gameOver = false;
                     }
                 }
@@ -178,16 +181,15 @@
                 a.y + a.height > b.y;
             }
 
-            let currentLevel = 0;
 
             function updateSpeed(){
-                let level = Math.floor(score / 10);
-                velocityX = -2 - (level * 0.5);
+                let level = Math.floor(score / 5);
+                velocityX = -2 - (level * 1);
 
                 if(level !== currentLevel){
                     currentLevel = level;
                     clearInterval(pipeInterval);
-                    let newInterval = Math.max(1200, 3000 - (level * 100));
+                    let newInterval = Math.max(750, 3000 - (level * 750));
                     pipeInterval = setInterval(placePipes, newInterval);
                 }
             }
