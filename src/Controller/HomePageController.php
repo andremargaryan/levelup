@@ -31,6 +31,12 @@ final class HomePageController extends AbstractController
         ]);
     }
 
+    #[Route('/user/profile', name: 'app_user_profile')]
+    public function profile(): Response
+    {
+    return $this->render('comptes/profile.html.twig');
+    }
+
     #[Route('/comptes/inscription', name: 'app_comptes_inscription')]
     public function register(Request $request, UserRepository $userRepository): Response
     {
