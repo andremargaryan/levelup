@@ -37,7 +37,7 @@
 			<option value="cny">Cn (元)</option>
 		</select>
 		{% if app.session.get('user') %}
-			<a href="#" title="Utilisateur">
+			<a href="{{ path('app_user_profile') }}" title="Utilisateur">
 				<i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i>
 				Bonjour
 				{{ app.session.get('user') }}
