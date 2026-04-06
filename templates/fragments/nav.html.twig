@@ -1,43 +1,53 @@
 <marquee class="pub-premium" scrollamount="8">
-    Passez en mode <span>PREMIUM</span> pour débloquer tous les avatanges exclusifs ! <i class="fa-solid fa-crown" style="color: rgba(12, 28, 44, 1.00);"></i>
-    Profitez de 4 semaines offertes ! 
+	Passez en mode
+	<span>PREMIUM</span>
+	pour débloquer tous les avatanges exclusifs !
+	<i class="fa-solid fa-crown" style="color: rgba(12, 28, 44, 1.00);"></i>
+	Profitez de 4 semaines offertes !
 </marquee>
 <div class="nav-bar">
-<div class="logo-group">
-    <a href="{{ path('app_home_page') }}">
-        <img src="../../images/Logo.png" class="logo">
-    </a>
+	<div class="logo-group">
+		<a href="{{ path('app_home_page') }}">
+			<img src="../../images/Logo.png" class="logo">
+		</a>
 
-    <div class="nav-links-left">
-        <div class="dropdown">
-            <button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i></button>
-            <div class="dropdown-content">
-                <a href="#">Domaine</a>
-                <a href="#">Date</a>
-                <a href="#">Lieu</a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="nav-links">
-    <div class="recherche">
-<form action="#" method="get" style="display: flex; align-items: center;">
-    <input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
-</form>
-</div>
-        <select class="select" name="currency">
-            <option value="eur">Fr (€)</option>
-            <option value="usd">En ($)</option>
-            <option value="gbp">Uk (£)</option>
-            <option value="jpy">Jp (¥)</option>
-            <option value="cny">Cn (元)</option>
-        </select>
+		<div class="nav-links-left">
+			<div class="dropdown">
+				<button class="dropbtn">Filtre<i class="fa-solid fa-sliders" style="color: rgba(255, 255, 255, 1.00);"></i>
+				</button>
+				<div class="dropdown-content">
+					<a href="#">Domaine</a>
+					<a href="#">Date</a>
+					<a href="#">Lieu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="nav-links">
+		<div class="recherche">
+			<form action="#" method="get" style="display: flex; align-items: center;">
+				<input type="text" name="search" placeholder="Rechercher un domaine..." oninput="">
+			</form>
+		</div>
+		<select class="select" name="currency">
+			<option value="eur">Fr (€)</option>
+			<option value="usd">En ($)</option>
+			<option value="gbp">Uk (£)</option>
+			<option value="jpy">Jp (¥)</option>
+			<option value="cny">Cn (元)</option>
+		</select>
+		{% if app.session.get('user') %}
+			<a href="#" title="Utilisateur">
+				<i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i>
+				Bonjour
+				{{ app.session.get('user') }}
+			</a>
+			<a href="{{path('app_comptes_deconnexion')}}">Se deconnecter</a>
+			<a href="#" title="Panier">🛒</a>
+		{% else %}
+			<a href="{{path('app_comptes_inscription')}}">S'inscrire</a>
+			<a href="{{path('app_comptes_connexion')}}">Se connecter</a>
+		{% endif %}
 
-        <a href="{{ path('app_user_profile') }}">
-         <i class="fa-solid fa-user"></i>
-        </a>
-
-    <a href="{{path('app_comptes_inscription')}}" >S'inscrire</a>
-        <a href="#" title="Panier">🛒</a>
-    </div>
+	</div>
 </div>
