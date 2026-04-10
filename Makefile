@@ -60,3 +60,7 @@ test:
 # liste des routes
 router:
 	docker exec $(DOCKER_PHP_CONTAINER) php bin/console debug:router
+
+# installer des trucs dans le composer
+composer-require:
+	docker exec $(DOCKER_PHP_CONTAINER) composer require $(package)
