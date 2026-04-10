@@ -9,7 +9,11 @@ use App\Repository\OffreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
+
+
 
 
 final class HomePageController extends AbstractController
@@ -35,11 +39,11 @@ final class HomePageController extends AbstractController
     #[Route('/user/profile', name: 'app_user_profile')]
     public function profile(): Response
     {
-    return $this->render('comptes/profile.html.twig');
+        return $this->render('comptes/profile.html.twig');
     }
 
     #[Route('/comptes/inscription', name: 'app_comptes_inscription')]
-    public function register(Request $request, UserRepository $userRepository): Response
+    public function register(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
 
         $user = new User();
@@ -51,7 +55,12 @@ final class HomePageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-           
+            $mdpEnClair=$user->getPassword();
+
+            $mdpHash = $passwordHasher->hashPassword($user,$mdpEnClair);
+
+            $user->setPassword($mdpHash);
+
             $userRepository->save($user);
 
             return $this->redirectToRoute('app_home_page');
@@ -63,7 +72,7 @@ final class HomePageController extends AbstractController
     }
 
         #[Route('/comptes/connexion', name: 'app_comptes_connexion')]
-    public function connexion(Request $request, UserRepository $userRepository): Response
+    public function connexion(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $hasher): Response
     {
         if ($request->isMethod('POST')) {
             $mail = $request->request->get('mail');
@@ -71,7 +80,7 @@ final class HomePageController extends AbstractController
 
             $utilisateur = $userRepository->findOneBy(['mail' => $mail]);
 
-            if ($utilisateur && $utilisateur->getMotDePasse() === $mdp) {
+            if ($utilisateur && $hasher->isPasswordValid($utilisateur, $mdp)) {
                 $request->getSession()->set('user', $utilisateur->getPrenom());
                 return $this->redirectToRoute('app_home_page');
             }

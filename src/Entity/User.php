@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-class User
+class User implements PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -76,7 +78,18 @@ class User
     public function setMotDePasse(string $mot_de_passe): static
     {
         $this->mot_de_passe = $mot_de_passe;
+        return $this;
+    }
 
+    // Pour satisfaire l'interface
+    public function getPassword(): ?string
+    {
+        return $this->mot_de_passe;
+    }
+
+     public function setPassword(string $mot_de_passe): static
+    {
+        $this->mot_de_passe = $mot_de_passe;
         return $this;
     }
 }
