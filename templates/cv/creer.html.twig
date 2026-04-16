@@ -1,0 +1,117 @@
+{% extends 'home/base1.html.twig' %}
+
+{% block title %}Créer mon CV - LevelUp{% endblock %}
+
+{% block body %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/cv-form.css') }}">
+{% endblock %}
+<div class="cv-wrapper">
+    <h1 class="section-title"> Créer mon CV</h1>
+    <form method="POST" action="{{ path('app_cv_creer') }}">
+        <div class="cv-card">
+            <h2><i class="fa-solid fa-user-tie" style="color: rgb(12, 28, 44);"></i> Informations personnelles</h2>
+            <div class="row">
+                <div>
+                    <label>Nom</label>
+                    <input type="text" name="nom" placeholder="Yee" required>
+                </div>
+                <div>
+                    <label>Prénom</label>
+                    <input type="text" name="prenom" placeholder="Steve" required>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="levelup@gmail.com">
+                </div>
+                <div>
+                    <label>Téléphone</label>
+                    <input type="tel" name="telephone" placeholder="06 67 67 67 67">
+                </div>
+            </div>
+            <label>Ville</label>
+            <input type="text" name="ville" placeholder="Paris">
+            <label>Titre du poste recherché</label>
+            <input type="text" name="poste" placeholder="Développeur Fullstack PHP – Stage">
+        </div>
+
+        <div class="cv-card">
+            <h2><i class="fa-solid fa-graduation-cap" style="color: rgb(12, 28, 44);"></i> Formation</h2>
+            <label>Diplôme</label>
+            <input type="text" name="diplome" placeholder="Licence 3 MIAGE">
+            <label>École / Université</label>
+            <input type="text" name="ecole" placeholder="Université Paris I Panthéon-Sorbonne">
+            <div class="row">
+                <div>
+                    <label>Année de début</label>
+                    <input type="text" name="formation_debut" placeholder="2022">
+                </div>
+                <div>
+                    <label>Année de fin</label>
+                    <input type="text" name="formation_fin" placeholder="2025">
+                </div>
+            </div>
+        </div>
+
+        <div class="cv-card">
+            <h2><i class="fa-solid fa-business-time" style="color: rgb(12, 28, 44);"></i> Expérience professionnelle</h2>
+            <label>Poste</label>
+            <input type="text" name="exp_poste" placeholder="Développeur Web">
+            <label>Entreprise</label>
+            <input type="text" name="exp_entreprise" placeholder="LevelUp">
+            <div class="row">
+                <div>
+                    <label>Début</label>
+                    <input type="text" name="exp_debut" placeholder="Jan 2024">
+                </div>
+                <div>
+                    <label>Fin</label>
+                    <input type="text" name="exp_fin" placeholder="Juin 2024">
+                </div>
+            </div>
+            <label>Description</label>
+            <textarea name="exp_description" placeholder="Développement de fonctionnalités..."></textarea>
+        </div>
+
+        <div class="cv-card">
+            <h2><i class="fa-solid fa-ranking-star" style="color: rgb(12, 28, 44);"></i> Compétences</h2>
+            <label>Compétences techniques (séparées par des virgules)</label>
+            <input type="text" name="competences" placeholder="PHP, Symfony, MySQL, HTML, CSS">
+        </div>
+
+        <div class="cv-card">
+            <h2><i class="fa-solid fa-language" style="color: rgb(12, 28, 44);"></i> Langues</h2>
+            <div class="row">
+                <div>
+                    <label>Langue</label>
+                    <input type="text" name="langue1" placeholder="Français">
+                </div>
+                <div>
+                    <label>Niveau</label>
+                    <input type="text" name="niveau1" placeholder="Natif">
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <label>Langue</label>
+                    <input type="text" name="langue2" placeholder="Anglais">
+                </div>
+                <div>
+                    <label>Niveau</label>
+                    <input type="text" name="niveau2" placeholder="Courant">
+                </div>
+            </div>
+        </div>
+
+        <div class="cv-card">
+            <h2><i class="fa-brands fa-angellist" style="color: rgb(12, 28, 44);"></i> Centres d'intérêt</h2>
+            <input type="text" name="loisirs" placeholder="Développement open source, Football, Musique...">
+        </div>
+
+        <button type="submit" class="btn-save"><i class="fa-regular fa-circle-check" style="color: rgb(12, 28, 44);"></i> Générer mon CV en PDF</button>
+    </form>
+</div>
+{% endblock %}

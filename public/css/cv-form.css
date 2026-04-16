@@ -1,0 +1,52 @@
+
+:root { --gold: #C9A84C; --navy: #1B2A3B; --radius: 12px; }
+.cv-wrapper { max-width: 800px; margin: 2.5rem auto; padding: 0 1.5rem; }
+.cv-card {
+    background: #fff;
+    border: 1.5px solid #EDE8DE;
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(27,42,59,.10);
+    margin-bottom: 1.5rem;
+}
+.cv-card h2 {
+    color: var(--navy);
+    font-size: 1.1rem;
+    font-weight: 800;
+    border-left: 4px solid var(--gold);
+    padding-left: .75rem;
+    margin-bottom: 1.2rem;
+}
+label { font-weight: 600; color: var(--navy); display: block; margin-bottom: .3rem; font-size: .9rem; }
+input, textarea, select {
+    width: 100%;
+    border: 1.5px solid #EDE8DE;
+    border-radius: 8px;
+    padding: .6rem 1rem;
+    font-size: .95rem;
+    margin-bottom: 1rem;
+    font-family: inherit;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--gold); }
+textarea { min-height: 80px; resize: vertical; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.btn-save {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    padding: .75rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+.btn-save:hover { opacity: .85; }
+.section-title {
+    color: var(--navy);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+}

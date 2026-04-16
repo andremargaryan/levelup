@@ -26,7 +26,7 @@ final class EmployeurController extends AbstractController
         ]);
     }
 
-    #[Route('/offre/nouvelle', name: 'nouvelle_offre')]
+    #[Route('/offre/nouvelle', name: 'nouvelle_offre', methods: ['GET', 'POST'])]
     public function nouvelleOffre(Request $request, EntityManagerInterface $entityManager): Response
     {
         $offre = new Offre();
@@ -44,7 +44,7 @@ final class EmployeurController extends AbstractController
         ]);
     }
 
-    #[Route('/offre/delete/{id}', name: 'delete')]
+    #[Route('/offre/delete/{id}', name: 'delete', methods: ['GET'])]
     public function delete(Offre $offre, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($offre);
@@ -52,7 +52,7 @@ final class EmployeurController extends AbstractController
         return $this->redirectToRoute('app_employeur_dashboard');
     }
 
-    #[Route('/offre/edit/{id}', name: 'offre_edit')]
+    #[Route('/offre/edit/{id}', name: 'offre_edit', methods: ['GET', 'POST'])]
     public function offreEdit(Offre $offre, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(OffreType::class, $offre);
