@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        @page {
+            margin: 0;
+            size: A4 portrait;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, Helvetica, sans-serif; }
-
         table.layout { width: 100%; border-collapse: collapse; }
         td.sidebar {
             width: 200px;
@@ -72,9 +75,9 @@
 
             <div class="sidebar-section">
                 <h3>Contact</h3>
-                {% if data.email %}<p>Email: {{ data.email }}</p>{% endif %}
-                {% if data.telephone %}<p>Téléphone: {{ data.telephone }}</p>{% endif %}
-                {% if data.ville %}<p>Localisation: {{ data.ville }}</p>{% endif %}
+                {% if data.email %}<p><b><u>Email:</u></b> {{ data.email }}</p>{% endif %}
+                {% if data.telephone %}<p><b><u>Téléphone:</u></b> {{ data.telephone }}</p>{% endif %}
+                {% if data.ville %}<p><b><u>Localisation:</u></b> {{ data.ville }}</p>{% endif %}
             </div>
 
             {% if data.competences %}
