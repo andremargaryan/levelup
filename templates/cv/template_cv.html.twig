@@ -8,61 +8,76 @@
             size: A4 portrait;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, Helvetica, sans-serif; }
-        table.layout { width: 100%; border-collapse: collapse; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            width: 210mm;
+            font-size: 12px;
+        }
+        table.layout {
+            width: 100%;
+            border-collapse: collapse;
+            min-height: 297mm;
+        }
         td.sidebar {
-            width: 200px;
+            width: 210px;
+            min-height: 297mm;
             background: #1B2A3B;
             color: #fff;
-            padding: 30px 20px;
+            padding: 40px 22px;
             vertical-align: top;
         }
         td.main {
-            padding: 30px 25px;
+            min-height: 297mm;
+            padding: 40px 30px;
             vertical-align: top;
         }
 
-        .name { font-size: 18px; font-weight: bold; color: #C9A84C; margin-bottom: 4px; }
-        .titre-poste { font-size: 10px; color: #E8D49A; margin-bottom: 20px; }
-        .sidebar-section { margin-bottom: 18px; }
+        .name { font-size: 24px; font-weight: bold; color: #C9A84C; margin-bottom: 6px; }
+        .poste { font-size: 13px; color: #E8D49A; margin-bottom: 35px; line-height: 1.6; }
+
+        .sidebar-section { margin-bottom: 30px; }
         .sidebar-section h3 {
-            font-size: 9px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: #C9A84C;
             border-bottom: 1px solid #C9A84C;
-            padding-bottom: 4px;
-            margin-bottom: 8px;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
         }
-        .sidebar-section p { font-size: 9px; color: #ccc; margin-bottom: 4px; }
+        .sidebar-section p { font-size: 11px; color: #ccc; margin-bottom: 8px; line-height: 1.6; }
+
         .competence-item {
             background: #C9A84C;
             color: #1B2A3B;
-            font-size: 8px;
+            font-size: 10px;
             font-weight: bold;
-            padding: 2px 8px;
+            padding: 3px 10px;
             border-radius: 10px;
             display: inline-block;
-            margin: 2px 2px 2px 0;
+            margin: 3px 3px 3px 0;
         }
 
-        .section { margin-bottom: 22px; }
+        .langue-row { margin-bottom: 8px; }
+        .langue-nom { font-size: 12px; display: inline-block; width: 60%; }
+        .langue-niveau { font-size: 12px; color: #C9A84C; font-weight: bold; display: inline-block; }
+
+        .section { margin-bottom: 35px; }
         .section h2 {
-            font-size: 13px;
+            font-size: 16px;
             color: #1B2A3B;
             border-left: 4px solid #C9A84C;
-            padding-left: 8px;
-            margin-bottom: 10px;
+            padding-left: 10px;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
         }
-        .item { margin-bottom: 10px; }
-        .item-header { display: flex; justify-content: space-between; }
-        .item-title { font-weight: bold; font-size: 11px; color: #1B2A3B; }
-        .item-date { font-size: 9px; color: #888; }
-        .item-subtitle { font-size: 10px; color: #C9A84C; margin-bottom: 3px; }
-        .item-desc { font-size: 10px; color: #555; line-height: 1.5; }
-        .langue-row { display: flex; justify-content: space-between; margin-bottom: 4px; }
-        .langue-nom { font-size: 10px; }
-        .langue-niveau { font-size: 10px; color: #C9A84C; font-weight: bold; }
+
+        .item { margin-bottom: 16px; }
+        .item-header { width: 100%; margin-bottom: 4px; }
+        .item-title { font-weight: bold; font-size: 13px; color: #1B2A3B; display: inline-block; width: 65%; }
+        .item-date { font-size: 11px; color: #888; display: inline-block; text-align: right; width: 34%; }
+        .item-subtitle { font-size: 12px; color: #C9A84C; margin-bottom: 8px; }
+        .item-desc { font-size: 11px; color: #555; line-height: 1.7; }
     </style>
 </head>
 <body>
