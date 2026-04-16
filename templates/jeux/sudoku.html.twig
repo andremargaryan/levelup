@@ -231,6 +231,9 @@
                             e.target.classList.add('success');
                             e.target.classList.remove('error');
                             e.target.disabled = true;
+                            if (grille.flat().every(v => v !== 0)) {
+                                alert("Félicitations, le sudoku est terminé !");
+                            }
                         } else {
                             e.target.classList.add('error');
                             setTimeout(() => {
