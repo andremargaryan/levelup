@@ -3,92 +3,9 @@
 {% block title %}Modifier {{ offre.titre }}{% endblock %}
 
 {% block body %}
-<style>
-    :root { 
-        --gold: #C9A84C; 
-        --navy: #1B2A3B; 
-        --radius: 12px; 
-    }
-    .edit-wrapper { 
-        max-width: 700px; 
-        margin: 2.5rem auto; 
-        padding: 0 1.5rem; 
-    }
-    .edit-card {
-        background: #fff;
-        border: 1.5px solid #EDE8DE;
-        border-radius: var(--radius);
-        padding: 2rem;
-        box-shadow: 0 4px 24px rgba(27,42,59,.10);
-    }
-    .edit-card h1 { 
-        color: var(--navy); 
-        font-size: 1.4rem; 
-        margin-bottom: 1.5rem; 
-    }
-    .edit-card label { 
-        font-weight: 700; 
-        color: var(--navy); 
-        display: block; margin-bottom: .3rem; 
-    }
-    .edit-card input, .edit-card textarea {
-        width: 100%;
-        border: 1.5px solid #EDE8DE;
-        border-radius: 8px;
-        padding: .6rem 1rem;
-        font-size: 1rem;
-        margin-bottom: 1.2rem;
-        font-family: inherit;
-    }
-    .edit-card input:focus, .edit-card textarea:focus {
-        outline: none;
-        border-color: var(--gold);
-    }
-    .edit-card textarea { 
-        min-height: 120px; 
-        resize: vertical; 
-    }
-    .actions { 
-        display: flex; 
-        gap: 1rem; 
-        margin-top: .5rem; 
-    }
-    .btn-save {
-        background: var(--gold);
-        color: var(--navy);
-        font-weight: 700;
-        border: none;
-        border-radius: 50px;
-        padding: .6rem 1.4rem;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-    .btn-save:hover { 
-        opacity: .85; 
-    }
-    .btn-back {
-        display: inline-block;
-        margin-bottom: 1.5rem;
-        color: #6B7A8D;
-        text-decoration: none;
-        font-size: .9rem;
-    }
-    .btn-back:hover { 
-        color: var(--navy); 
-    }
-    .btn-cancel {
-        background: #fff;
-        color: #6B7A8D;
-        font-weight: 700;
-        border: 1.5px solid #EDE8DE;
-        border-radius: 50px;
-        padding: .6rem 1.4rem;
-        font-size: 1rem;
-        cursor: pointer;
-        text-decoration: none;
-    }
-</style>
-
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/offre_edit.css') }}">
+{% endblock %}
 <div class="edit-wrapper">
     <a href="{{ path('app_employeur_offre_detail', {id: offre.id}) }}" class="btn-back">← Retour au détail</a>
 

@@ -11,7 +11,6 @@ class Sudoku extends AbstractController
     #[Route('/jeux/sudoku', name: 'app_sudoku')]
     public function sudoku(): Response
     {
-        // On définit la grille, mais on ne lance AUCUNE fonction de résolution ici
         $grille = [
             [5, 3, 0, 0, 7, 0, 0, 0, 0],
             [6, 0, 0, 1, 9, 5, 0, 0, 0],
@@ -23,8 +22,6 @@ class Sudoku extends AbstractController
             [0, 0, 0, 4, 1, 9, 0, 0, 5],
             [0, 0, 0, 0, 8, 0, 0, 7, 9]
         ];
-
-        // On envoie juste les données brutes au template
         return $this->render('jeux/sudoku.html.twig', [
             'grille' => $grille
         ]);
