@@ -16,8 +16,6 @@ class CvController extends AbstractController
     {
         if ($request->isMethod('POST')) {
             $data = $request->request->all();
-
-            // Génération du PDF
             $options = new Options();
             $options->set('isHtml5ParserEnabled', true);
             $options->set('isPhpEnabled', false);
