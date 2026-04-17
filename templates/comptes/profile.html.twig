@@ -1,201 +1,63 @@
 {% extends 'home/base1.html.twig' %}
 
-{% block title %}Mon Profil – LevelUp{% endblock %}
+{% block title %}Mon Profil – LevelUp
+{% endblock %}
 
 {% block body %}
-<style>
-    :root {
-        --gold:       #C9A84C;
-        --gold-light: #E8D49A;
-        --navy:       #1B2A3B;
-        --cream:      #F5F0E8;
-        --muted:      #6B7A8D;
-        --radius:     12px;
-        --shadow:     0 4px 24px rgba(27,42,59,.10);
-    }
-    * { box-sizing: border-box; }
+	{% block stylesheets %}
+		<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+	{% endblock %}
+	<header class="profil-header">
+		<h1>Mon
+			<span>Profil</span>
+		</h1>
+	</header>
 
-    .profil-header {
-        background: var(--navy);
-        color: #fff;
-        padding: 1.25rem 2.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .profil-header h1 { font-size: 1.4rem; font-weight: 800; }
-    .profil-header h1 span { color: var(--gold); }
+	<main
+		class="profil-content">
 
-    .btn-gold {
-        background: var(--gold);
-        color: var(--navy);
-        font-weight: 700;
-        border: none;
-        border-radius: 50px;
-        padding: .6rem 1.4rem;
-        font-size: .95rem;
-        cursor: pointer;
-        transition: background .2s, transform .15s;
-        display: inline-block;
-    }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+		{# Carte identité #}
+		<div class="profil-card">
+			<div class="profil-card-header">
+				<div class="avatar"></div>
+				<div class="infos">
+					<h2></h2>
+					<p>Membre · Étudiant</p>
+				</div>
+			</div>
 
-    .profil-content {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 0 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .profil-card {
-        background: #fff;
-        border: 1.5px solid #EDE8DE;
-        border-radius: var(--radius);
-        padding: 1.75rem;
-        box-shadow: var(--shadow);
-    }
-
-    .profil-card-header {
-        display: flex;
-        align-items: center;
-        gap: 1.25rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .avatar {
-        width: 72px; height: 72px;
-        border-radius: 50%;
-        background: var(--navy);
-        color: var(--gold);
-        font-weight: 800;
-        font-size: 1.4rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-    }
-
-    .profil-card-header .infos h2 {
-        font-size: 1.2rem;
-        font-weight: 800;
-        color: var(--navy);
-    }
-    .profil-card-header .infos p {
-        color: var(--muted);
-        font-size: .85rem;
-        margin-top: .2rem;
-    }
-
-    .section-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: var(--navy);
-        margin-bottom: 1rem;
-        padding-bottom: .5rem;
-        border-bottom: 2px solid #EDE8DE;
-    }
-
-    .form-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: .35rem;
-    }
-    .form-group.full { grid-column: 1 / -1; }
-
-    .form-group label {
-        font-size: .82rem;
-        font-weight: 700;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: .04em;
-    }
-    .form-group input {
-        border: 1.5px solid #EDE8DE;
-        border-radius: 8px;
-        padding: .6rem .9rem;
-        font-size: .95rem;
-        color: var(--navy);
-        transition: border-color .2s;
-        outline: none;
-    }
-    .form-group input:focus { border-color: var(--gold); }
-
-    .cv-zone {
-        border: 2px dashed #EDE8DE;
-        border-radius: var(--radius);
-        padding: 1.5rem;
-        text-align: center;
-        color: var(--muted);
-        font-size: .9rem;
-        transition: border-color .2s, background .2s;
-        cursor: pointer;
-    }
-    .cv-zone:hover { border-color: var(--gold); background: var(--cream); }
-    .cv-zone i { font-size: 1.8rem; color: var(--gold); margin-bottom: .5rem; display: block; }
-    .cv-zone span { display: block; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
-
-    .form-footer {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1rem;
-    }
-</style>
-
-<header class="profil-header">
-    <h1>Mon <span>Profil</span></h1>
-</header>
-
-<main class="profil-content">
-
-    {# Carte identité #}
-    <div class="profil-card">
-        <div class="profil-card-header">
-            <div class="avatar"> </div>
-            <div class="infos">
-                <h2>   </h2>
-                <p>Membre · Étudiant</p>
-            </div>
-        </div>
-
-        <div class="section-title">Informations personnelles</div>
-        <div class="form-grid">
-            <div class="form-group">
-                <label>Prénom</label>
-                <input type="text"  placeholder="Votre prénom">
-            </div>
-            <div class="form-group">
-                <label>Nom</label>
-                <input type="text"  placeholder="Votre nom">
-            </div>
-            <div class="form-group full">
-                <label>Adresse email</label>
-                <input type="email" placeholder="Votre email">
-            </div>
-        </div>
-        <div class="form-footer">
-            <button class="btn-gold">Sauvegarder</button>
-        </div>
-    </div>
+			<div class="section-title">Informations personnelles</div>
+			<div class="form-grid">
+				<div class="form-group">
+					<label>Prénom</label>
+					<input type="text" placeholder="Votre prénom">
+				</div>
+				<div class="form-group">
+					<label>Nom</label>
+					<input type="text" placeholder="Votre nom">
+				</div>
+				<div class="form-group full">
+					<label>Adresse email</label>
+					<input type="email" placeholder="Votre email">
+				</div>
+			</div>
+			<div class="form-footer">
+				<button class="btn-gold">Sauvegarder</button>
+			</div>
+		</div>
 
 
-    <div class="profil-card">
-        <div class="section-title">Mon CV</div>
-        <div class="cv-zone">
-            <i class="fa-solid fa-file-arrow-up"></i>
-            <span>Déposer votre CV ici</span>
-            PDF, DOC ou DOCX · Max 5 Mo
-        </div>
-        <div class="form-footer" style="margin-top: 1rem;">
-            <button class="btn-gold">Mettre à jour le CV</button>
-        </div>
-    </div>
+		<div class="profil-card">
+			<div class="section-title">Mon CV</div>
+			<div class="cv-zone">
+				<i class="fa-solid fa-file-arrow-up"></i>
+				<span>Déposer votre CV ici</span>
+				PDF, DOC ou DOCX · Max 5 Mo
+			</div>
+			<div class="form-footer" style="margin-top: 1rem;">
+				<button class="btn-gold">Mettre à jour le CV</button>
+			</div>
+		</div>
 
-</main>
+	</main>
 {% endblock %}
