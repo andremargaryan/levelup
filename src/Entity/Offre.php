@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\OffreRepository;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\Swip;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OffreRepository::class)]
@@ -25,6 +28,19 @@ class Offre
 
     #[ORM\Column(length: 255)]
     private ?string $tag = null;
+
+    #[ORM\OneToMany(mappedBy: 'offre', targetEntity: Swip::class)]
+    private Collection $swips;
+
+    public function __construct()
+    {
+        $this->swips = new ArrayCollection();
+    }
+
+    public function getSwips(): Collection
+    {
+        return $this->swips;
+    }
 
     public function getId(): ?int
     {

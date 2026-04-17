@@ -33,6 +33,7 @@ async function swipeCard(dir) {
   if (!card) return;
 
   const currentId = card.dataset.id;
+  const action = dir === 'right' ? 'like' : 'dislike';
 
   card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s';
   card.style.transform = dir === 'right'
@@ -41,33 +42,35 @@ async function swipeCard(dir) {
   card.style.opacity = '0';
 
 
-  const response = await fetch(`/offres/next/${currentId}`);
-  const data = await response.json();
+      const [, data] = await Promise.all([
+        fetch(`/offre/swipe/${currentId}/${action}`),
+        fetch(`/offres/next/${currentId}`).then(r => r.json())
+    ]);
 
-  setTimeout(() => {
-    if (data.done) {
-      card.innerHTML = '<p>Plus aucune offre disponible !</p>';
-      card.style.transform = '';
-      card.style.opacity = '1';
-      return;
-    }
+    setTimeout(() => {
+        if (data.done) {
+            card.innerHTML = '<p>Plus aucune offre disponible !</p>';
+            card.style.transform = '';
+            card.style.opacity = '1';
+            return;
+        }
 
-    card.dataset.id          = data.id;
-    card.querySelector('.card-title').textContent = data.titre;
-    card.querySelector('.card-text').textContent  = data.description;
+        card.dataset.id = data.id;
+        card.querySelector('.card-title').textContent = data.titre;
+        card.querySelector('.card-text').textContent  = data.description;
 
-    card.style.transition = 'none';
-    card.style.transform  = dir === 'right'
-      ? 'translateX(-130%) rotate(-20deg)'
-      : 'translateX(130%) rotate(20deg)';
-    card.style.opacity = '0';
+        card.style.transition = 'none';
+        card.style.transform  = dir === 'right'
+            ? 'translateX(-130%) rotate(-20deg)'
+            : 'translateX(130%) rotate(20deg)';
+        card.style.opacity = '0';
 
-    requestAnimationFrame(() => {
-      card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s';
-      card.style.transform  = '';
-      card.style.opacity    = '1';
-    });
-  }, 500);
+        requestAnimationFrame(() => {
+            card.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.4s';
+            card.style.transform  = '';
+            card.style.opacity    = '1';
+        });
+    }, 500);
 }
 
 document.getElementById('like').addEventListener('click', () => swipeCard('right'));

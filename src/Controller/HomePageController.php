@@ -12,9 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
-
-
-
+use App\Entity\Offre;
+use App\Entity\Swip;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 final class HomePageController extends AbstractController
 {
@@ -27,13 +28,52 @@ final class HomePageController extends AbstractController
     }
 
     #[Route('/home/swip', name: 'app_home_swip')]
-    public function homeSwip(OffreRepository $offreRepository): Response
+    public function homeSwip(OffreRepository $offreRepository, Request $request, UserRepository $userRepository): Response
     {
-        $offre = $offreRepository->findOneBy([], ['id' => 'ASC']);
+        $userId = $request->getSession()->get('user_id');
+
+        if (!$userId) {
+            return $this->redirectToRoute('app_comptes_connexion');
+        }
+
+        $user = $userRepository->find($userId);
+
+        if (!$user) {
+            return $this->redirectToRoute('app_comptes_connexion');
+        }
+
+        $offre = $offreRepository->findPremiereOffreNonSwipee($user);
 
         return $this->render('home/swip.html.twig', [
             'offre' => $offre,
         ]);
+    }
+
+    #[Route('/offre/swipe/{id}/{action}', name: 'swip')]
+    public function swip(
+        Offre $offre,
+        string $action,
+        EntityManagerInterface $em,
+        UserRepository $userRepository,
+        Request $request
+    ): JsonResponse {
+        $userId = $request->getSession()->get('user_id');
+        $user = $userRepository->find($userId);
+
+        if (!$user) {
+            return new JsonResponse(['error' => 'Non connecté'], 401);
+        }
+
+        $swipe = new Swip();
+        $swipe->setUser($user);
+        $swipe->setOffre($offre);
+        $swipe->setLiked($action === 'like');
+        $swipe->setSwipedAt(new \DateTime());
+
+        $em->persist($swipe);
+        $em->flush();
+
+        return new JsonResponse(['status' => 'ok']);
     }
 
     #[Route('/user/profile', name: 'app_user_profile')]
@@ -83,6 +123,7 @@ final class HomePageController extends AbstractController
             if ($utilisateur && $hasher->isPasswordValid($utilisateur, $mdp)) {
                 $request->getSession()->set('user', $utilisateur->getPrenom());
                 $request->getSession()->set('estEmployeur', $utilisateur->isEstEmployeur());
+                $request->getSession()->set('user_id', $utilisateur->getId());
                 return $this->redirectToRoute('app_home_page');
             }
 

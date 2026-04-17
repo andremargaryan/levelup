@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offre;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,7 +16,7 @@ class OffreRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Offre::class);
     }
-    // src/Repository/OffreRepository.php
+
     public function findNextOffre(int $currentId): ?Offre
     {
         return $this->createQueryBuilder('o')
@@ -26,7 +27,17 @@ class OffreRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-
+    public function findPremiereOffreNonSwipee(User $user): ?Offre
+    {
+        return $this->createQueryBuilder('o')
+            ->leftJoin('o.swips', 's', 'WITH', 's.user = :user')
+            ->where('s.id IS NULL')
+            ->setParameter('user', $user)
+            ->orderBy('o.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
     //    /**
     //     * @return Offre[] Returns an array of Offre objects
     //     */
