@@ -37,13 +37,18 @@
 			<option value="cny">Cn (元)</option>
 		</select>
 		{% if app.session.get('user') %}
+			{% if app.session.get('estEmployeur') %}
+				<a href="{{ path('app_employeur_dashboard') }}" class="btn-employeur">
+				Acceder a son espace Employeur
+				</a>
+			{% else %}
 			<a href="{{ path('app_user_profile') }}" title="Utilisateur">
 				<i class="fa-solid fa-user" style="color: rgba(198, 167, 94, 1.00);"></i>
 				Bonjour
 				{{ app.session.get('user') }}
 			</a>
+			{% endif %}
 			<a href="{{path('app_comptes_deconnexion')}}">Se deconnecter</a>
-			<a href="#" title="Panier">🛒</a>
 		{% else %}
 			<a href="{{path('app_comptes_inscription')}}">S'inscrire</a>
 			<a href="{{path('app_comptes_connexion')}}">Se connecter</a>

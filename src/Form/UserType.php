@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 
@@ -34,6 +35,11 @@ class UserType extends AbstractType
             ->add('mail', EmailType::class, [
                 'label' => 'Mail',
                 'attr' => ['class' => 'form-control']
+            ])
+            ->add('estEmployeur', CheckboxType::class, [
+                'label' => 'Employeur',
+                'required' => false,
+                'attr' => ['class' => 'form-check-input']
             ])
              ->add('save', SubmitType::class, [
                 'label' => $options['is_edit'] ? "S'incrire" : "S'inscrire",

@@ -25,13 +25,14 @@
 		<div class="elements">
 			{{ form_row(form.mail) }}
 		</div>
-        <div class="elements">
-			{{ form_row(form.estEmployeur) }}
-		</div>
 		<div class="elements">
 			{{ form_row(form.save) }}
 		</div>
 		{{ form_end(form) }}
+
+		<a href="{{ path('app_employeur_dashboard') }}" class="btn-employeur">
+        S'inscrire en temps qu'Employeur
+    </a>
 	</div>
 
 	<style>

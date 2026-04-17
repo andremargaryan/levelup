@@ -82,6 +82,7 @@ final class HomePageController extends AbstractController
 
             if ($utilisateur && $hasher->isPasswordValid($utilisateur, $mdp)) {
                 $request->getSession()->set('user', $utilisateur->getPrenom());
+                $request->getSession()->set('estEmployeur', $utilisateur->isEstEmployeur());
                 return $this->redirectToRoute('app_home_page');
             }
 

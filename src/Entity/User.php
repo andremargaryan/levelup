@@ -31,6 +31,9 @@ class User implements PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $point = 0;
 
+    #[ORM\Column(type: 'boolean')]
+    private bool $estEmployeur = false;
+
 
     public function getId(): ?int
     {
@@ -110,6 +113,16 @@ class User implements PasswordAuthenticatedUserInterface
     public function addPoints(int $points): static
     {
         $this->point = ($this->point ?? 0) + $points;
+        return $this;
+    }
+    public function isEstEmployeur(): bool
+    {
+        return $this->estEmployeur;
+    }
+
+    public function setEstEmployeur(bool $estEtudiant): static
+    {
+        $this->estEmployeur = $estEtudiant;
         return $this;
     }
 }
