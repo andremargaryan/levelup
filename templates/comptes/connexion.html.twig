@@ -1,16 +1,160 @@
 {% extends 'home/base1.html.twig' %}
 {% block title %}Connexion
 {% endblock %}
-{% block body %}
+{% block body %}<style>
+    :root {
+        --gold:       #C9A84C;
+        --gold-light: #E8D49A;
+        --navy:       #1B2A3B;
+        --cream:      #F5F0E8;
+        --muted:      #1B2A3B;
+        --radius:     12px;
+        --shadow:     0 4px 24px rgba(27,42,59,.10);
+    }
+    * { box-sizing: border-box; }
 
-	{% if erreur is defined %}
-		<p style="color:red;">{{ erreur }}</p>
-	{% endif %}
+    .login-wrapper {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cream);
+        padding: 2rem;
+    }
 
-	<form method="POST">
-		<input type="text" name="mail" placeholder="Votre mail">
-		<input type="password" name="mot_de_passe" placeholder="Votre mot de passe">
-		<button type="submit">Se connecter</button>
-	</form>
+    .login-card {
+        background: #fff;
+        border: 1.5px solid #EDE8DE;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 420px;
+    }
 
+    .login-logo {
+        text-align: center;
+        margin-bottom: 1.75rem;
+    }
+    .login-logo h1 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--navy);
+    }
+    .login-logo h1 span { color: var(--gold); }
+    .login-logo p {
+        color: var(--muted);
+        font-size: .88rem;
+        margin-top: .3rem;
+    }
+
+    .error-msg {
+        background: #FDEAEA;
+        color: #B03030;
+        border-radius: 8px;
+        padding: .7rem 1rem;
+        font-size: .88rem;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+        margin-bottom: 1rem;
+    }
+    .form-group label {
+        font-size: .82rem;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+    }
+    .form-group input {
+        border: 1.5px solid #EDE8DE;
+        border-radius: 8px;
+        padding: .7rem 1rem;
+        font-size: .95rem;
+        color: var(--navy);
+        outline: none;
+        transition: border-color .2s;
+        width: 100%;
+    }
+    .form-group input:focus { border-color: var(--gold); }
+
+    .btn-gold {
+        width: 100%;
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        border: none;
+        border-radius: 50px;
+        padding: .75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-top: .5rem;
+        transition: background .2s, transform .15s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .login-footer {
+        text-align: center;
+        margin-top: 1.25rem;
+        font-size: .85rem;
+        color: var(--muted);
+    }
+    .login-footer a {
+        color: var(--gold);
+        font-weight: 700;
+        text-decoration: none;
+    }
+    .login-footer a:hover { text-decoration: underline; }
+
+    .divider {
+        border: none;
+        border-top: 1.5px solid #EDE8DE;
+        margin: 1.25rem 0;
+    }
+</style>
+
+<div class="login-wrapper">
+    <div class="login-card">
+
+        <div class="login-logo">
+            <h1>Level<span>Up</span></h1>
+            <h1>Connectez-vous à votre espace</h1>
+        </div>
+
+        {% if erreur is defined %}
+            <div class="error-msg">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ erreur }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label for="mail">Adresse email</label>
+                <input type="text" id="mail" name="mail" placeholder="exemple@mail.com">
+            </div>
+            <div class="form-group">
+                <label for="mot_de_passe">Mot de passe</label>
+                <input type="password" id="mot_de_passe" name="mot_de_passe" placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn-gold">Se connecter</button>
+        </form>
+
+        <hr class="divider">
+
+        <div class="login-footer">
+            Pas encore de compte ?
+            <a href="{{ path('app_comptes_inscription') }}">S'inscrire</a>
+        </div>
+
+    </div>
+</div>
 {% endblock %}
