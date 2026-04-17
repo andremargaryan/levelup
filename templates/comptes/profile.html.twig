@@ -48,16 +48,21 @@
 
 
 		<div class="profil-card">
-			<div class="section-title">Mon CV</div>
-			<div class="cv-zone">
-				<i class="fa-solid fa-file-arrow-up"></i>
-				<span>Déposer votre CV ici</span>
-				PDF, DOC ou DOCX · Max 5 Mo
-			</div>
-			<div class="form-footer" style="margin-top: 1rem;">
-				<button class="btn-gold">Mettre à jour le CV</button>
-			</div>
-		</div>
+            <div class="section-title">Mon CV</div>
+            <div class="cv-zone">
+                <i class="fa-solid fa-file-arrow-up"></i>
+                <span>Déposer votre CV ici</span>
+                PDF, DOC ou DOCX · Max 5 Mo
+            </div>
+            <div class="form-footer" style="margin-top: 1rem;">
+                <button class="btn-gold">Mettre à jour le CV</button>
+            </div>
+            <div class="form-footer" style="margin-top: 1rem;">
+                <a href=" {{ path('app_cv_creer')}} ">
+                <button class="btn-gold">Création d'un CV</button>
+                </a>
+            </div>
+        </div>
 
 	</main>
 {% endblock %}
