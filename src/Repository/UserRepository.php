@@ -21,4 +21,10 @@ class UserRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function addPoints(User $user, int $points): void
+    {
+        $user->addPoints($points);
+        $this->getEntityManager()->flush();
+    }
 }

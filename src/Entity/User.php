@@ -28,6 +28,9 @@ class User implements PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $mot_de_passe = null;
 
+    #[ORM\Column]
+    private ?int $point = 0;
+
 
     public function getId(): ?int
     {
@@ -87,9 +90,26 @@ class User implements PasswordAuthenticatedUserInterface
         return $this->mot_de_passe;
     }
 
-     public function setPassword(string $mot_de_passe): static
+    public function setPassword(string $mot_de_passe): static
     {
         $this->mot_de_passe = $mot_de_passe;
+        return $this;
+    }
+
+    public function getPoint(): ?int
+    {
+        return $this->point;
+    }
+
+    public function setPoint(int $point): static
+    {
+        $this->point = $point;
+        return $this;
+    }
+
+    public function addPoints(int $points): static
+    {
+        $this->point = ($this->point ?? 0) + $points;
         return $this;
     }
 }

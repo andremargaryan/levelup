@@ -428,19 +428,36 @@ setStatus('À vous de jouer !');
 }
 
 function endGame(result) {
-gameOver = true;
-if (result.winner === 'X') {
-setStatus('Vous avez gagné ! 🎉', 'win');
-scores.player ++;
-highlightWin(result.combo);
-} else if (result.winner === 'O') {
-setStatus("L'IA a gagné !", 'lose');
-scores.ia ++;
-highlightWin(result.combo);
-} else {
-setStatus("Égalité !", 'draw');
-scores.draw ++;
-} updateScores();
+    gameOver = true;
+    if (result.winner === 'X') {
+		if(difficulty === 'easy'){
+			fetch('/jeux/morpion/gagner/10', {
+				method: 'POST',
+				credentials: 'same-origin'
+			})
+		} else if(difficulty === 'medium'){
+			fetch('/jeux/morpion/gagner/20', {
+				method: 'POST',
+				credentials: 'same-origin'
+			})
+		} else{
+			fetch('/jeux/morpion/gagner/100', {
+				method: 'POST',
+				credentials: 'same-origin'
+			})
+		}
+        setStatus('Vous avez gagné ! 🎉', 'win');
+        scores.player++;
+        highlightWin(result.combo);
+    } else if (result.winner === 'O') {
+        setStatus("L'IA a gagné !", 'lose');
+        scores.ia++;
+        highlightWin(result.combo);
+    } else {
+        setStatus("Égalité !", 'draw');
+        scores.draw++;
+    }
+    updateScores();
 }
 
 function restartGame() {
